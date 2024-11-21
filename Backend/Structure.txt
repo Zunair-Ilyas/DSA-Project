@@ -1,0 +1,63 @@
+/social-media-app
+│
+├── backend/
+│   ├── config/               # Configuration files (e.g., database, environment variables)
+│   │   └── db.js             # MongoDB connection setup
+│   ├── controllers/          # Request handlers for routes (e.g., creating posts, users)
+│   │   ├── authController.js # Handle user authentication (login, register)
+│   │   ├── userController.js # User-related API logic (getting user details, etc.)
+│   │   ├── postController.js # Post-related logic (creating, fetching posts)
+│   │   └── commentController.js # Handle comments on posts
+│   ├── models/               # Mongoose models (User, Post, Comment)
+│   │   ├── userModel.js      # User model
+│   │   ├── postModel.js      # Post model
+│   │   └── commentModel.js   # Comment model
+│   ├── routes/               # API routes (endpoints for handling requests)
+│   │   ├── authRoutes.js     # Authentication routes
+│   │   ├── userRoutes.js     # User routes (profile, friends)
+│   │   ├── postRoutes.js     # Post-related routes (create, like, comment)
+│   │   └── commentRoutes.js  # Comment-related routes
+│   ├── services/             # Logic and utilities (Graph, Queue, etc.)
+│   │   ├── graphService.js   # Logic for handling the user network graph (mutual friends, suggestions)
+│   │   └── queueService.js   # Queue logic for post processing (e.g., notifications)
+│   ├── utils/                # Utility functions (e.g., for validation)
+│   ├── .env                  # Environment variables (DB URI, JWT secret, etc.)
+│   ├── server.js             # Main entry point (server setup)
+│   └── package.json          # Backend dependencies (Express, Mongoose, etc.)
+│
+├── frontend/                 # React-based frontend
+│   ├── public/               # Static files (index.html, images)
+│   ├── src/                  # React app source code
+│   │   ├── assets/           # Images, icons, etc.
+│   │   ├── components/       # React components (e.g., Navbar, PostCard, etc.)
+│   │   │   ├── Post.js       # Post component
+│   │   │   ├── Navbar.js     # Navbar component
+│   │   │   └── UserProfile.js # User profile component
+│   │   ├── pages/            # React pages (e.g., Home, Profile, Login)
+│   │   │   ├── Home.js       # Home page (feeds, posts)
+│   │   │   ├── Profile.js    # Profile page (user posts, friends)
+│   │   │   └── Login.js      # Login page
+│   │   ├── context/          # React context for global state (e.g., user, auth)
+│   │   ├── services/         # API service functions for making HTTP requests
+│   │   │   └── api.js        # API calls (login, fetch posts, etc.)
+│   │   ├── App.js            # Main React component
+│   │   └── index.js          # Entry point for React app
+│   ├── .env                  # Frontend environment variables (API URLs)
+│   ├── package.json          # Frontend dependencies (React, Axios, etc.)
+│   └── README.md             # Frontend setup instructions
+│
+├── java-backend/             # Java backend for graph and queue logic
+│   ├── src/                  # Java source code
+│   │   ├── graph/            # Graph-related logic (e.g., mutual friends)
+│   │   │   ├── Graph.java    # Graph class to handle users and friendships
+│   │   │   └── UserNode.java # User node class for graph structure
+│   │   ├── queue/            # Queue-related logic (e.g., notifications, post processing)
+│   │   │   └── PostQueue.java # Post processing queue
+│   │   ├── services/         # Business logic (UserService, PostService)
+│   │   ├── controllers/      # Controllers for API endpoints
+│   │   ├── models/           # Models related to Java backend (if necessary)
+│   │   └── Main.java         # Entry point for the Java application
+│   ├── pom.xml               # Java Maven dependencies (Graph, Spring Boot, etc.)
+│   └── README.md             # Java backend setup instructions
+│
+└── README.md                 # Main README for the entire project
