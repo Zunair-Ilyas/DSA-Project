@@ -1,0 +1,40 @@
+/* Suggestions */
+.suggestions {
+    flex: 1;
+    height: calc(80vh - 90px); /* Adjust to account for navbar height */
+    position: sticky;
+    top: 90px; /* Starts below the navbar */
+}
+
+.suggested {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 500;
+    font-size: 12px;
+    gap: 8px;
+    padding: 5px;
+}
+
+.suggested img {
+    width: 40px;
+    height: 40px;
+}
+
+.suggestedUserInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.suggestedUserInfoBio {
+    font-weight: normal;
+    font-size: 8px;
+    color: #535353;
+}
+
+.suggestionsHeading {
+    text-align: center;
+    padding: 20px 0;
+    color: #FF5A60;
+}

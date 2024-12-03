@@ -1,4 +1,4 @@
-const User = require('../../Models/User');
+const User = require("../../Models/User")
 const jwt = require('jsonwebtoken');
 const statusCode = require('http-status-codes');
 const bcrypt = require('bcryptjs')
@@ -22,7 +22,7 @@ const createUser = async (req, res) => {
         blockedUsers,
         posts,
     } = req.body;
-    
+
     try {
         const hashedPassword = bcrypt.hashSync(password, bcryptSalt);
         const user = await User.create({
@@ -31,7 +31,7 @@ const createUser = async (req, res) => {
             password: hashedPassword,
             fullName,
             bio,
-            profilePicture,
+            profilePicture: typeof profilePicture === 'string' ? profilePicture : '', // Ensure it's a string
             location,
             dateOfBirth,
             gender,
@@ -40,18 +40,22 @@ const createUser = async (req, res) => {
             friendRequestsReceived,
             blockedUsers,
             posts,
-        })
+        });
 
         jwt.sign({user}, process.env.JWT_SECRET, {}, (err, token) => {
             if (err) {
                 return res.status(statusCode.UNAUTHORIZED).json({message: `Unable to authenticate with JWT ${token}`});
             }
-            res.status(statusCode.CREATED).json({message: `Authenticated with JWT ${token}`, token, user});
-        })
+            res.status(statusCode.CREATED).json({
+                message: `Authenticated with JWT ${token}`, token, user
+            });
+        });
+        console.log(req.body)
     } catch (e) {
         console.log(e);
-        res.status(statusCode.INTERNAL_SERVER_ERROR).json({error: e.message})
+        res.status(statusCode.INTERNAL_SERVER_ERROR).json({error: e.message});
     }
-}
+};
+
 
 module.exports = createUser;

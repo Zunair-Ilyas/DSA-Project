@@ -1,4 +1,3 @@
-const express = require('express');
 const User = require('../../Models/User');
 const statusCode = require('http-status-codes');
 
@@ -28,7 +27,7 @@ const blockUser = async (req, res) => {
 
         res.status(statusCode.OK).json({ message: 'User blocked successfully.' });
     } catch (e) {
-        console.error(e);
+
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ error: e.message });
     }
 };

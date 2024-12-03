@@ -1,0 +1,100 @@
+.topBar {
+    width: 100%;
+    height: 90px;
+    background-color: #A9DEF9;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: "Sora", serif;
+    align-items: center;
+    position: sticky; /* Makes the navbar sticky */
+    top: 0; /* Sticks to the top */
+    z-index: 1000; /* Ensures it stays above other content */
+    padding: 0 20px; /* Optional: Added padding for spacing */
+}
+
+/* Logo section */
+.logo {
+    padding-left: 80px;
+}
+
+/* Top bar right section (e.g., notifications, user profile) */
+.topBarRight ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 10px;
+}
+
+.topBarRight {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* User profile section */
+.topBarUserProfile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 10px;
+}
+
+/* Settings section */
+.topBarSettings {
+    align-self: center;
+    justify-self: center;
+}
+
+/* Notifications section */
+.topBarNotifications {
+    padding: 8px;
+    align-self: center;
+    justify-self: center;
+}
+
+/* User profile name styling */
+.topBarUserProfileName p:first-child {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.topBarUserProfileName p:last-child {
+    font-weight: 200;
+    font-size: 12px;
+}
+
+/* Left section (Search bar) */
+.topBarLeft {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.topBarLeft div {
+    background-color: white;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px 0 0 8px;
+    padding: 10px;
+}
+
+/* Search input styling */
+.search-topBar {
+    border: none;
+    outline: none;
+    border-radius: 0 8px 8px 0;
+    width: 90%;
+    height: 40px;
+    padding: 10px;
+    box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, 0.75);
+}
+
+.search-topBar::placeholder {
+    color: #535353;
+}

@@ -7,7 +7,7 @@ const getAllPosts = async (req, res) => {
 
     try {
         const query = userID ? {user: userID} : {};
-        const posts = await Post.find(query).populate('user', 'fullName');
+        const posts = await Post.find(query).populate('user', 'fullName userName');
 
         console.log(posts)
         return res.status(statusCodes.OK).json(posts);

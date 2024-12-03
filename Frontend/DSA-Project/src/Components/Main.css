@@ -1,0 +1,84 @@
+.main {
+    flex: 4;
+    background-color: #EDF9FF;
+}
+
+.mainCreatePost {
+    background-color: #FFFFFF;
+    margin: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mainCreatePostOptions {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+    /*border: 2px solid black;*/
+}
+
+.mainCreatePostOptions ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    font-size: 12px;
+}
+
+.mainCreatePostOptions ul li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.PostInput {
+    padding: 10px;
+    position: relative;
+}
+
+.textarea-container {
+    position: relative;
+    width: 100%;
+}
+
+.PostText {
+    border: none;
+    background-color: #EDF9FF;
+    resize: none;
+    outline: none;
+    padding: 8px;
+    width: 100%;
+    font-family: "Sora", serif;
+    font-size: 14px;
+    box-sizing: border-box;
+    color: #535353;
+}
+
+.PostText::placeholder {
+    color: transparent;
+}
+
+.textarea-placeholder {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    display: flex;
+    align-items: center;
+    color: #535353;
+    font-size: 14px;
+    pointer-events: none;
+    font-family: "Sora", serif;
+    z-index: 1;
+}
+
+.textarea-placeholder img {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+}
+
+.PostText:focus + .textarea-placeholder,
+.PostText:not(:placeholder-shown) + .textarea-placeholder {
+    display: none;
+}

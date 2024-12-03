@@ -1,0 +1,146 @@
+.Heading {
+    background-color: #FF5A60;
+    color: #FFFFFF;
+    text-align: center;
+    font-family: "Sora", serif;
+    font-weight: bold;
+    padding: 20px;
+}
+
+/* Main page container with center alignment */
+.RegistrationPage2 {
+    background-color: #A9DEF9;
+    margin-top: 72px;
+    font-family: "Sora", serif;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;  /* Changed to center align */
+    flex-direction: row;  /* Align everything in a column */
+    color: gray;
+}
+
+/* Logo container (optional) */
+.RegistrationPageLogo {
+    width: 92px;
+    margin-bottom: 64px;
+}
+
+/* Form container with column layout */
+.RegistrationForm2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;  /* Align labels and inputs to the left */
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    background-color: transparent;  /* Transparent background to match the page */
+    border-radius: 8px;
+}
+
+/* Form field styles */
+.FormFieldCustom {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 20px;  /* Space between fields */
+}
+
+/* Labels above fields */
+.FormFieldCustom label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: gray;
+}
+
+.FormFieldCustom input,
+.FormFieldCustom select,
+.FormFieldCustom textarea {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;  /* Full width */
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+}
+
+.FormFieldCustom input:focus,
+.FormFieldCustom select:focus,
+.FormFieldCustom textarea:focus {
+    outline: none;
+    border: none;
+}
+
+/* File input button */
+.FormFieldCustom input[type="file"] {
+    border: none;
+    padding: 8px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* Textarea styling (Non-resizable) */
+.FormFieldCustom textarea {
+    resize: none;  /* Prevent resizing */
+}
+
+/* Error messages styling */
+.Error {
+    color: red;
+    font-size: 12px;
+}
+
+/* Custom button style for Submit */
+.SubmitButton {
+    width: 200px;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #FF5A60;
+    font-size: 16px;
+    transition: 0.3s;
+    align-self: center;
+}
+
+.SubmitButton:active {
+    opacity: 0.8;
+}
+
+/* Optional: Image preview for profile picture */
+img {
+    margin-top: 10px;
+    max-width: 100%;  /* Allow the image to scale */
+    max-height: 100px;  /* Ensure it doesn't grow too large */
+    border-radius: 8px;
+    align-self: center;  /* Center the image */
+}
+
+/* Custom button for file input */
+.FormFieldCustom input[type="file"] {
+    display: none; /* Hide the default file input */
+}
+
+.CustomFileButton {
+    padding: 10px 15px;
+    background-color: #FF5A60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.FormFieldCustomSpan {
+    background-color: #FF5A60;
+    color: white;
+    align-self: center;
+}

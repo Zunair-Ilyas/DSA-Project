@@ -1,0 +1,66 @@
+.Heading{
+    background-color: #FF5A60;
+    color: #FFFFFF;
+    text-align: center;
+    font-family: "Sora", serif;
+    font-weight: bold;
+    padding: 20px;
+}
+.RegistrationPage{
+    background-color: #A9DEF9;
+    font-family: "Sora", serif;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: gray;
+}
+.RegistrationPageLogo{
+    width: 92px;
+    margin-bottom: 20px;
+}
+.RegistrationForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.FormFieldRowOne, .FormFieldRowTwo{
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    /*border: 1px solid black;*/
+}
+.FormFieldRowOne .FormField, .FormFieldRowTwo .FormField{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+}
+.FormFieldRowOne .FormField input, .FormFieldRowTwo .FormField input{
+    border: none;
+    height: 32px;
+    width: 240px;
+    border-radius: 5px;
+    padding: 8px;
+    background-color: #FFFFFF;
+    /*border: 1px solid black;*/
+}
+.FormFieldRowOne .FormField input:focus, .FormFieldRowTwo .FormField input:focus{
+    outline: none;
+}
+.SubmitButton{
+    width: 200px;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #FF5A60;
+    transition: 0.5s;
+}
+.SubmitButton:active{
+    opacity: 0.8;
+}
