@@ -70,7 +70,7 @@ const RegistrationStepTwo = () => {
                 };
 
                 // Send data to the backend
-                const response = await axios.post('http://localhost:2007/friends/register', data);
+                const response = await axios.post('http://localhost:2009/friends/register', data);
 
                 if (response.status === 201) {
                     console.log('Registration successful:', response.data);

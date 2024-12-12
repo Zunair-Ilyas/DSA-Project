@@ -25,7 +25,7 @@
     font-size: 12px;
 }
 
-.mainCreatePostOptions ul li {
+.mainCreatePostOptions ul li, .mainCreatePostOptions ul li label {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -82,3 +82,23 @@
 .PostText:not(:placeholder-shown) + .textarea-placeholder {
     display: none;
 }
+.postButton {
+    padding: 10px 20px;
+    background-color: #ff5a5a;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+    margin: 10px;
+}
+.postButton:hover {
+    background-color: #e64a4a;
+}
+.postButton:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 90, 90, 0.7);
+}
+

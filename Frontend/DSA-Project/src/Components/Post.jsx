@@ -1,5 +1,7 @@
 import React from 'react';
 import './Post.css';
+import image1 from '../assets/event.jpg'
+import video from '../assets/GPA calculator.mp4'
 
 function Post({ content, createdAt, user, media = [] }) {
     const isMediaAvailable = media.length > 0;
@@ -30,12 +32,12 @@ function Post({ content, createdAt, user, media = [] }) {
                     <div className="PostMedia">
                         {isVideo && (
                             <video controls className="PostVideo">
-                                <source src={mediaSrc} type="video/mp4" />
+                                <source src="" type="video/mp4" />
                                 Your browser does not support the video tag.
                             </video>
                         )}
                         {isImage && (
-                            <img src={mediaSrc} alt="Post Medias" className="PostImage" />
+                            <img src="" alt="Post Medias" className="PostImage" />
                         )}
                     </div>
                 )}

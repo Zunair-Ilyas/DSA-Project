@@ -10,7 +10,7 @@ const blockUser = require('../Controllers/Friends/blockUser')
 const unblockUser = require('../Controllers/Friends/unblockUser')
 const getFriendRequests = require('../Controllers/Friends/getFriendRequests')
 const getAllUsers = require('../Controllers/Friends/getAllUsers')
-const getMutualsSuggestions = require('../Controllers/Friends/getMutual&Suggestions')
+const {getMutualFriendsController, getFriendSuggestionsController} = require("../Controllers/Friends/getMutual&Suggestions");
 
 router.route('/register').post(createUser);
 router.route('/send-request').post(SendFriendRequest)
@@ -21,6 +21,7 @@ router.route('/block-request').post(blockUser)
 router.route('/unblock-request').post(unblockUser)
 router.route('/:userID').post(getFriendRequests)
 router.route('/allUsers').get(getAllUsers)
-router.route('/receive-data').post(getMutualsSuggestions);
+router.get('/mutual-friends/:userId1/:userId2', getMutualFriendsController);
+router.get('/friend-suggestions/:userId', getFriendSuggestionsController);
 
 module.exports = router;

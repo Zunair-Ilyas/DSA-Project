@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 require('dotenv').config()
-const port = process.env.PORT || 2007
+const port = process.env.PORT || 2011
 const cors = require('cors')
 const connectDB = require('./DB/Connect')
 const router = require('./Routes/Route')
@@ -13,7 +13,7 @@ app.use('/', router)
 
 const start = () => {
     app.listen(port, () => {
-        console.log(`Server is running on http://localhost:${port} aaaa`)
+        console.log(`Server is running on http://localhost:${port}`)
     })
     connectDB()
 }

@@ -35,7 +35,7 @@
 │   │   │   └── UserProfile.js # User profile component
 │   │   ├── pages/            # React pages (e.g., Home, Profile, Login)
 │   │   │   ├── Home.js       # Home page (feeds, posts)
-│   │   │   ├── Profile.js    # Profile page (user posts, friends)
+│   │   │   ├── Profile.jsx    # Profile page (user posts, friends)
 │   │   │   └── Login.js      # Login page
 │   │   ├── context/          # React context for global state (e.g., user, auth)
 │   │   ├── services/         # API service functions for making HTTP requests

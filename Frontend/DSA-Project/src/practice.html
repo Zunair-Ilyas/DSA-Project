@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Image to Base64 Converter</title>
+</head>
+<body>
+<h1>Image to Base64 Converter</h1>
+<input type="file" id="imageInput" accept="image/*">
+<p>Base64 Output:</p>
+<textarea id="base64Output" rows="10" cols="50" readonly></textarea>
+
+<script>
+    document.getElementById("imageInput").addEventListener("change", function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById("base64Output").value = e.target.result;
+            };
+            reader.onerror = function(err) {
+                console.error("Error reading file:", err);
+                alert("Failed to convert image to Base64.");
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+</body>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>

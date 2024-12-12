@@ -1,30 +1,27 @@
-// controllers/dataController.js
+const User = require('../../Models/User');
+const {getMutualFriends, getFriendSuggestions} = require("../../Util/GraphBuilder");
 
-const handleReceivedData = (data) => {
-    console.log("Received Data from Java:", data);
-    // You can log or process the data further here if needed.
-};
 
-const getMutualsSuggestions = (req, res) => {
+exports.getMutualFriendsController = async (req, res) => {
     try {
-        // const data = req.body;  // Data sent from Java (mutuals and suggestions)
-        //
-        // console.log("Processing received data from Java...");
-        //
-        // // Call the function to handle the received data
-        // handleReceivedData(data);
-        //
-        // // Send back a success response
-        // res.status(200).json({
-        //     message: 'Data processed successfully',
-        //     receivedData: data
-        // });
-        res.json({message: "hello world"});
+        const { userId1, userId2 } = req.params;
+        const mutualFriends = await getMutualFriends(userId1, userId2);
 
-    } catch (error) {
-        console.error('Error processing data:', error);
-        res.status(500).json({ message: 'Error processing data' });
+        return res.status(200).json({ mutualFriends });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Server Error' });
     }
 };
 
-module.exports = { getMutualsSuggestions };
+exports.getFriendSuggestionsController = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const suggestions = await getFriendSuggestions(userId);
+
+        return res.status(200).json({ suggestions });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Server Error' });
+    }
+};
