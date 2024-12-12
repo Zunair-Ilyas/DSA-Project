@@ -8,64 +8,74 @@ import axios from "axios";
 import Post from "./Post.jsx";
 
 function Main(props) {
-    const [posts, setPosts] = useState([]);
-    const [content, setContent] = useState('');  // State to manage post content
-    const [media, setMedia] = useState(null);  // State to manage uploaded media (photo/video)
-    const textAreaRef = useRef(null);  // Reference to the text area
-    const userID = "6730f2bc06a924910ff28ea5";  // Replace this with dynamic user ID (from context, props, or localStorage)
+    const [data, setData] = useState({
+        content: "",
+        media: [],
+        isPublic: true,
+        userID: "6730f2bc06a924910ff28ea5"
+    });
+    const [posts, setPosts] = useState([]); // State for fetched posts
+    const textAreaRef = useRef(null);
 
-    // Fetch posts from the API
+    // Define fetchPosts as a reusable function
+    const fetchPosts = async () => {
+        try {
+            const response = await axios.get(`http://localhost:2011/post/getAllPosts/${data.userID}`);
+            setPosts(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error fetching posts:', error);
+        }
+    };
+
+    // Fetch posts on initial render
     useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                const response = await axios(`http://localhost:2011/post/getAllPosts/${userID}`);
-                setPosts(response.data);
-                console.log(response.data);
-            } catch (error) {
-                console.error('Error fetching posts:', error);
-            }
-        };
-
         fetchPosts();
-    }, [userID]);  // Re-fetch posts whenever the userID changes
+    }, [data.userID]);
 
-    // Handle the creation of a post
     const handleCreatePost = async () => {
         try {
-            const formData = new FormData();
-            formData.append('content', content);
-            if (media) {
-                formData.append('media', media);
-            }
-
-            // Assuming the API for creating posts is 'http://localhost:2011/post/create'
-            const response = await axios.post('http://localhost:2011/post/create', formData, {
+            const response = await axios.post('http://localhost:2011/post', data, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    'Content-Type': 'application/json',
                 },
-                params: { userID }, // Pass the userID dynamically to the backend
             });
 
-            // After successfully creating a post, update the post list
-            setPosts([response.data, ...posts]);
-            setContent('');  // Clear content after posting
-            setMedia(null);  // Clear media after posting
+            console.log('Post created:', response.data);
+            setData((prevState) => ({
+                ...prevState,
+                content: "",
+                media: [],
+            }));
+            fetchPosts(); // Refresh posts after creating a new one
         } catch (error) {
             console.error('Error creating post:', error);
         }
     };
 
-    // Handle file upload for photo or video
-    const handleMediaChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setMedia(file);  // Set the uploaded file as media
-        }
+    const handleMediaChange = async (e) => {
+        const files = Array.from(e.target.files);
+        const base64Files = await Promise.all(
+            files.map((file) => fileToBase64(file))
+        );
+
+        setData((prevState) => ({
+            ...prevState,
+            media: [...prevState.media, ...base64Files],
+        }));
     };
 
-    // Handle clicking "Write a post" and focusing on the textarea
+    const fileToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+        });
+    };
+
     const handleWritePostClick = () => {
-        textAreaRef.current.focus();  // Focus on the textarea
+        textAreaRef.current.focus();
     };
 
     return (
@@ -85,6 +95,7 @@ function Main(props) {
                                     <input
                                         type="file"
                                         accept="image/*"
+                                        multiple
                                         style={{ display: 'none' }}
                                         onChange={handleMediaChange}
                                     />
@@ -97,6 +108,7 @@ function Main(props) {
                                     <input
                                         type="file"
                                         accept="video/*"
+                                        multiple
                                         style={{ display: 'none' }}
                                         onChange={handleMediaChange}
                                     />
@@ -107,13 +119,18 @@ function Main(props) {
                     <div className="PostInput">
                         <div className="textarea-container">
                             <textarea
-                                ref={textAreaRef}  // Reference to the text area
+                                ref={textAreaRef}
                                 rows="4"
                                 cols="80"
                                 className="PostText"
                                 placeholder=" "
-                                value={content}
-                                onChange={(e) => setContent(e.target.value)}  // Update content as user types
+                                value={data.content}
+                                onChange={(e) =>
+                                    setData((prevState) => ({
+                                        ...prevState,
+                                        content: e.target.value,
+                                    }))
+                                }
                             ></textarea>
                             <div className="textarea-placeholder">
                                 <img src={writePostPlaceholderIcon} alt="icon" />

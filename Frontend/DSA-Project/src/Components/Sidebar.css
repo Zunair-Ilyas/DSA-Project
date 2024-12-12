@@ -44,3 +44,6 @@
     color: #D90429;
     font-weight: bold;
 }
+.options li{
+    cursor: pointer;
+}

@@ -17,6 +17,9 @@
 .logo {
     padding-left: 80px;
 }
+.logo img{
+    cursor: pointer;
+}
 
 /* Top bar right section (e.g., notifications, user profile) */
 .topBarRight ul {
@@ -40,6 +43,7 @@
     align-items: center;
     gap: 10px;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 /* Settings section */
