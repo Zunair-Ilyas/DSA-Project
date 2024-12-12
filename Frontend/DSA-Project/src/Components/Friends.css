@@ -1,42 +1,248 @@
-.friendsPage {
+.friends-container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    background-color: #f4f4f4;
     flex: 4;
 }
 
-.friendsList {
-    display: flex;
-    flex-wrap: wrap;
+.friends-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.friends-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
 }
 
-.friend {
+.friend-card {
     background-color: #fff;
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
-    padding: 10px;
-    width: 200px;
-    text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
-.friendProfilePic {
+.friend-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.friend-header {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #f9f9f9;
+}
+
+.friend-profile-pic {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    margin-bottom: 10px;
+    object-fit: cover;
+    margin-right: 15px;
 }
 
-.friendDetails {
+.default-profile-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 30px;
+}
+
+.friend-info {
+    flex-grow: 1;
+}
+
+.friend-name {
+    font-size: 18px;
+    margin: 0;
+    color: #333;
+}
+
+.friend-username {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0 0;
+}
+
+.friend-details {
+    padding: 15px;
+}
+
+.friend-bio {
+    margin: 0;
+    color: #555;
     font-size: 14px;
 }
 
-.friendName {
-    font-weight: bold;
-    font-size: 16px;
+.no-bio {
+    color: #999;
+    font-style: italic;
+}
+
+.friend-details-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.friend-details-content {
+    background-color: white;
+    border-radius: 10px;
+    width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 20px;
+    position: relative;
+}
+
+.close-details-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #666;
+}
+
+.friend-details-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.large-profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.large-default-profile-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    font-size: 50px;
+}
+
+.friend-details-info h2 {
+    margin: 0;
+    color: #333;
+}
+
+.friend-details-info .username {
+    color: #666;
+    margin: 5px 0 0;
+}
+
+.friend-details-bio h3 {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.mutual-friends-section h3 {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.mutual-friends-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.mutual-friend-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.mutual-friend-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
     margin-bottom: 5px;
 }
 
-.friendBio {
-    color: #555;
-    font-style: italic;
+.mutual-friend-default-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    font-size: 25px;
+}
+
+.remove-friend-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.remove-friend-btn:hover {
+    background-color: #ff3333;
+}
+
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.friends-loading, .friends-error, .no-friends {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 20px;
 }

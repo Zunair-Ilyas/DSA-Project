@@ -8,11 +8,12 @@ import axios from "axios";
 import Post from "./Post.jsx";
 
 function Main(props) {
+    const id = localStorage.getItem('userId')
     const [data, setData] = useState({
         content: "",
         media: [],
         isPublic: true,
-        userID: "6730f2bc06a924910ff28ea5"
+        userID: id
     });
     const [posts, setPosts] = useState([]); // State for fetched posts
     const textAreaRef = useRef(null);

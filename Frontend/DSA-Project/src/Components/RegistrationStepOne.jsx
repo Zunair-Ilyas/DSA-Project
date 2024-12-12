@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './RegistrationStepOne.css'
 import logo from '../assets/Logo.svg'
 
@@ -12,7 +12,7 @@ const RegistrationStepOne = () => {
     });
 
     const [errors, setErrors] = useState({});
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -25,7 +25,6 @@ const RegistrationStepOne = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Basic validation for the form
         const errors = {};
         if (!formData.userName) errors.userName = 'Username is required';
         if (!formData.fullName) errors.fullName = 'Full Name is required';
@@ -35,77 +34,83 @@ const RegistrationStepOne = () => {
 
         setErrors(errors);
 
-        // If no validation errors, navigate to the second page
         if (Object.keys(errors).length === 0) {
-            // Passing formData to the next step using state
             navigate('/register-step-two', { state: { formData } });
         }
     };
 
     return (
-        <>
-            <h1 className="Heading">Registration - Step 1</h1>
-            <div className="RegistrationPage">
-                <img src={logo} className="RegistrationPageLogo"/>
-                <form className="RegistrationForm" onSubmit={handleSubmit}>
-                    <div className="FormFieldRowOne">
-                        <div className="FormField">
+        <div className="registration-container">
+            <div className="registration-card">
+                <img src={logo} className="registration-logo" alt="Logo"/>
+                <h1 className="registration-heading">Create Your Account</h1>
+                <form className="registration-form" onSubmit={handleSubmit}>
+                    <div className="form-row">
+                        <div className="form-group">
                             <label htmlFor="userName">Username</label>
                             <input
                                 type="text"
                                 name="userName"
                                 value={formData.userName}
                                 onChange={handleChange}
+                                placeholder="Choose a unique username"
                                 required
                             />
-                            {errors.userName && <p className="Error">{errors.userName}</p>}
+                            {errors.userName && <p className="error-message">{errors.userName}</p>}
                         </div>
 
-                        <div className="FormField">
+                        <div className="form-group">
                             <label htmlFor="fullName">Full Name</label>
                             <input
                                 type="text"
                                 name="fullName"
                                 value={formData.fullName}
                                 onChange={handleChange}
+                                placeholder="Enter your full name"
                                 required
                             />
-                            {errors.fullName && <p className="Error">{errors.fullName}</p>}
+                            {errors.fullName && <p className="error-message">{errors.fullName}</p>}
                         </div>
                     </div>
 
-                    <div className="FormFieldRowTwo">
-                        <div className="FormField">
+                    <div className="form-row">
+                        <div className="form-group">
                             <label htmlFor="email">Email</label>
                             <input
                                 type="email"
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
+                                placeholder="Enter your email address"
                                 required
                             />
-                            {errors.email && <p className="Error">{errors.email}</p>}
+                            {errors.email && <p className="error-message">{errors.email}</p>}
                         </div>
 
-                        <div className="FormField">
+                        <div className="form-group">
                             <label htmlFor="password">Password</label>
                             <input
                                 type="password"
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
+                                placeholder="Create a strong password"
                                 required
                             />
-                            {errors.password && <p className="Error">{errors.password}</p>}
+                            {errors.password && <p className="error-message">{errors.password}</p>}
                         </div>
                     </div>
 
-                    <button type="submit" className="SubmitButton">
-                        Next
+                    <button type="submit" className="submit-button">
+                        Continue
                     </button>
                 </form>
+
+                <div className="login-redirect">
+                    Already have an account? <Link to="/login" className="login-link">Sign In</Link>
+                </div>
             </div>
-        </>
+        </div>
     );
 };
 

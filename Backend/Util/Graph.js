@@ -48,8 +48,8 @@ class SocialGraph {
         const directFriends = new Set(user.friends.map(friend => friend._id.toString()));
         const suggestionsQueue = new PriorityQueue((a, b) => b.score - a.score);
 
-        const suggestedUsers = new Set(); // To track suggested users and avoid duplicates
-        const otherSuggestions = []; // To collect lower-priority suggestions
+        const suggestedUsers = new Set();
+        const otherSuggestions = [];
 
         for (const friendId of directFriends) {
             const friend = await User.findById(friendId).populate('friends', '_id location').lean();
@@ -86,33 +86,30 @@ class SocialGraph {
 
         const suggestions = [];
 
-        // First, add higher-priority suggestions
         while (!suggestionsQueue.isEmpty() && suggestions.length < maxSuggestions) {
             const { userId: suggestedUserId } = suggestionsQueue.dequeue();
             suggestions.push(suggestedUserId);
             history.add(suggestedUserId);
         }
 
-        // Then, add lower-priority suggestions (if there is space)
         for (const userId of otherSuggestions) {
             if (suggestions.length < maxSuggestions) {
                 suggestions.push(userId);
                 history.add(userId);
             } else {
-                break; // Stop if we reached the max suggestions limit
+                break;
             }
         }
 
         return suggestions;
     }
 
-
     shouldSkipSuggestion(potentialFriendId, userId, directFriends, history, suggestedUsers) {
         return (
-            potentialFriendId === userId ||        // Skip the user themselves
-            directFriends.has(potentialFriendId) || // Skip direct friends
-            history.has(potentialFriendId) ||       // Skip users already suggested
-            suggestedUsers.has(potentialFriendId)   // Skip users already suggested in this round
+            potentialFriendId === userId ||
+            directFriends.has(potentialFriendId) ||
+            history.has(potentialFriendId) ||
+            suggestedUsers.has(potentialFriendId)
         );
     }
 

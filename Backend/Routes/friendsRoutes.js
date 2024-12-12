@@ -12,6 +12,8 @@ const getFriendRequests = require('../Controllers/Friends/getFriendRequests')
 const getAllUsers = require('../Controllers/Friends/getAllUsers')
 const {getMutualFriendsController, getFriendSuggestionsController} = require("../Controllers/Friends/getMutual&Suggestions");
 const getUser = require('../Controllers/Friends/getUser')
+const getFriends = require('../Controllers/Friends/getFriends')
+const login = require('../Controllers/Friends/login')
 
 router.route('/register').post(createUser);
 router.route('/send-request').post(SendFriendRequest)
@@ -25,5 +27,7 @@ router.route('/allUsers').get(getAllUsers)
 router.route('/mutual-friends/:userId1/:userId2').get(getMutualFriendsController);
 router.route('/friend-suggestions/:userId').get(getFriendSuggestionsController);
 router.route('/getUser/:userID').get(getUser)
+router.route('/getFriends/:userID').get(getFriends)
+router.route('/login').get(login)
 
 module.exports = router;

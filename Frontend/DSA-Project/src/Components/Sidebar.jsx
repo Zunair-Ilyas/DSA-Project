@@ -6,21 +6,27 @@ import settingsBoxIcon from "../assets/SettingBoxIcon.svg";
 import logoutIcon from "../assets/LogoutIcon.svg";
 import './Sidebar.css';
 import { useNavigate } from "react-router-dom";
+import {useUser} from "./Login.jsx";
 
 function Sidebar(props) {
     const navigate = useNavigate();
 
     // Handle navigation on profile click
     const handleProfileClick = () => {
-        navigate('/profile');  // Navigate to the profile page
+        navigate('/profile');
     };
+
+    const handleProfileClick2 = () => {
+        navigate('/friends');
+    };
+    const { user } = useUser();
 
     return (
         <>
             <aside className="sidebar">
                 <div className="sidebarUserProfile">
                     <img src={profilePic} alt="profilePic" className="sidebarUserProfileImg" />
-                    <p>Full Name</p>
+                    <p>{user?.fullName || "Full Name"}</p>
                 </div>
                 <div className="sidebarOptions">
                     <ul className="options">
@@ -28,7 +34,7 @@ function Sidebar(props) {
                             <img src={profileIcon} alt='settingsIcon' />
                             <p>Profile</p>
                         </li>
-                        <li>
+                        <li onClick={handleProfileClick2}>
                             <img src={friendsIcon} alt='settingsIcon' />
                             <p>Friends</p>
                         </li>

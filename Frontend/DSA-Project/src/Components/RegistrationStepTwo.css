@@ -1,146 +1,199 @@
-.Heading {
-    background-color: #FF5A60;
-    color: #FFFFFF;
-    text-align: center;
-    font-family: "Sora", serif;
-    font-weight: bold;
-    padding: 20px;
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* Main page container with center alignment */
-.RegistrationPage2 {
-    background-color: #A9DEF9;
-    margin-top: 72px;
-    font-family: "Sora", serif;
-    width: 100%;
-    height: 100vh;
+body {
+    font-family: 'Sora', sans-serif;
+    background-color: #f4f4f4;
+}
+
+.registration-container-two {
     display: flex;
-    align-items: center;
-    justify-content: space-evenly;  /* Changed to center align */
-    flex-direction: row;  /* Align everything in a column */
-    color: gray;
-}
-
-/* Logo container (optional) */
-.RegistrationPageLogo {
-    width: 92px;
-    margin-bottom: 64px;
-}
-
-/* Form container with column layout */
-.RegistrationForm2 {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;  /* Align labels and inputs to the left */
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #A9DEF9 0%, #FF5A60 100%);
+    padding: 20px;
+    overflow: hidden;
+}
+
+.registration-card-two {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 30px;
     width: 100%;
     max-width: 500px;
-    padding: 30px;
-    background-color: transparent;  /* Transparent background to match the page */
-    border-radius: 8px;
-}
-
-/* Form field styles */
-.FormFieldCustom {
+    text-align: center;
+    max-height: 90vh;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    margin-bottom: 20px;  /* Space between fields */
 }
 
-/* Labels above fields */
-.FormFieldCustom label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    font-size: 14px;
-    color: gray;
-}
-
-.FormFieldCustom input,
-.FormFieldCustom select,
-.FormFieldCustom textarea {
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;  /* Full width */
-    box-sizing: border-box;
-    background-color: #FFFFFF;
-}
-
-.FormFieldCustom input:focus,
-.FormFieldCustom select:focus,
-.FormFieldCustom textarea:focus {
-    outline: none;
-    border: none;
-}
-
-/* File input button */
-.FormFieldCustom input[type="file"] {
-    border: none;
-    padding: 8px;
-    width: 100%;
-    border-radius: 5px;
-}
-
-/* Textarea styling (Non-resizable) */
-.FormFieldCustom textarea {
-    resize: none;  /* Prevent resizing */
-}
-
-/* Error messages styling */
-.Error {
-    color: red;
-    font-size: 12px;
-}
-
-/* Custom button style for Submit */
-.SubmitButton {
-    width: 200px;
-    padding: 10px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    background-color: #FF5A60;
-    font-size: 16px;
-    transition: 0.3s;
+.registration-logo-two {
+    width: 80px;
+    margin-bottom: 15px;
     align-self: center;
 }
 
-.SubmitButton:active {
-    opacity: 0.8;
+.registration-heading-two {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: 600;
 }
 
-/* Optional: Image preview for profile picture */
-img {
-    margin-top: 10px;
-    max-width: 100%;  /* Allow the image to scale */
-    max-height: 100px;  /* Ensure it doesn't grow too large */
+.registration-form-two {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.form-group-two {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 6px;
+}
+
+.form-group-two label {
+    color: #555;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-input-two {
+    padding: 10px;
+    border: 1px solid #ddd;
     border-radius: 8px;
-    align-self: center;  /* Center the image */
+    font-size: 14px;
+    transition: all 0.3s ease;
+    width: 100%;
 }
 
-/* Custom button for file input */
-.FormFieldCustom input[type="file"] {
-    display: none; /* Hide the default file input */
+.form-input-two:focus {
+    outline: none;
+    border-color: #FF5A60;
+    box-shadow: 0 0 0 3px rgba(255, 90, 96, 0.1);
 }
 
-.CustomFileButton {
-    padding: 10px 15px;
+.error-message-two {
+    color: #FF5A60;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.profile-picture-group {
+    align-items: center;
+}
+
+.file-input-hidden {
+    display: none;
+}
+
+.file-upload-button {
     background-color: #FF5A60;
     color: white;
     border: none;
-    border-radius: 5px;
+    padding: 10px 15px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: all 0.3s ease;
     font-size: 14px;
-    transition: background-color 0.3s ease;
-    text-align: center;
+    margin-bottom: 10px;
 }
 
-.FormFieldCustomSpan {
+.file-upload-button:hover {
+    background-color: #FF4047;
+}
+
+.image-preview-container {
+    max-width: 150px;
+    margin: 10px 0;
+    align-self: center;
+}
+
+.image-preview {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.submit-button-two {
     background-color: #FF5A60;
     color: white;
-    align-self: center;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 5px;
+}
+
+.submit-button-two:hover {
+    background-color: #FF4047;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(255, 90, 96, 0.3);
+}
+
+.submit-button-two:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .registration-card-two {
+        padding: 20px;
+        width: 95%;
+        max-width: 400px;
+    }
+
+    .registration-logo-two {
+        width: 70px;
+    }
+
+    .registration-heading-two {
+        font-size: 20px;
+    }
+
+    .form-input-two, .file-upload-button, .submit-button-two {
+        font-size: 13px;
+        padding: 9px;
+    }
+}
+/* (Previous CSS remains the same, add these styles at the end) */
+
+.login-redirect-two {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.login-link-two {
+    color: #FF5A60;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.login-link-two:hover {
+    color: #FF4047;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .login-redirect-two {
+        margin-top: 15px;
+        font-size: 13px;
+    }
 }

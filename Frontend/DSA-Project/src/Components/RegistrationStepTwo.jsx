@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import './RegistrationStepTwo.css';
 import logo from "../assets/Logo.svg";
 import axios from "axios";
@@ -41,17 +41,14 @@ const RegistrationStepTwo = () => {
 
         const errors = {};
 
-        // Validate form data
         if (!formData.gender) errors.gender = 'Gender is required';
         if (!formData.dateOfBirth) errors.dateOfBirth = 'Date of Birth is required';
         if (!formData.profilePicture) errors.profilePicture = 'Profile picture is required';
 
         setErrors(errors);
 
-        // If no errors, submit the form
         if (Object.keys(errors).length === 0) {
             try {
-                // Prepare data to send to backend
                 const data = {
                     userName: formData.userName,
                     email: formData.email,
@@ -61,20 +58,19 @@ const RegistrationStepTwo = () => {
                     location: formData.location,
                     dateOfBirth: formData.dateOfBirth,
                     gender: formData.gender,
-                    profilePicture: formData.profilePicture,  // Send file as is
-                    friends: [],  // Empty array for now (you can update this later if needed)
+                    profilePicture: formData.profilePicture,
+                    friends: [],
                     friendRequestsSent: [],
                     friendRequestsReceived: [],
                     blockedUsers: [],
                     posts: [],
                 };
 
-                // Send data to the backend
-                const response = await axios.post('http://localhost:2009/friends/register', data);
+                const response = await axios.post('http://localhost:2011/friends/register', data);
 
                 if (response.status === 201) {
                     console.log('Registration successful:', response.data);
-                    navigate('/home');  // Navigate to home page after successful registration
+                    navigate('/home');
                 } else {
                     console.error('Registration failed');
                 }
@@ -89,18 +85,19 @@ const RegistrationStepTwo = () => {
     };
 
     return (
-        <>
-            <h1 className="Heading">Registration - Step 2</h1>
-            <div className="RegistrationPage2">
-                <img src={logo} className="RegistrationPageLogo" alt="Logo"/>
-                <form className="RegistrationForm2" onSubmit={handleSubmit}>
-                    <div className="FormFieldCustom">
+        <div className="registration-container-two">
+            <div className="registration-card-two">
+                <img src={logo} className="registration-logo-two" alt="Logo"/>
+                <h1 className="registration-heading-two">Complete Your Profile</h1>
+
+                <form className="registration-form-two" onSubmit={handleSubmit}>
+                    <div className="form-group-two">
                         <label htmlFor="gender">Gender</label>
                         <select
                             name="gender"
                             value={formData.gender}
                             onChange={handleChange}
-                            className="select"
+                            className="form-input-two"
                         >
                             <option value="">Select Gender</option>
                             <option value="Male">Male</option>
@@ -108,60 +105,85 @@ const RegistrationStepTwo = () => {
                             <option value="Other">Other</option>
                             <option value="Prefer not to say">Prefer not to say</option>
                         </select>
-                        {errors.gender && <p className="Error">{errors.gender}</p>}
+                        {errors.gender && <p className="error-message-two">{errors.gender}</p>}
                     </div>
-                    <div className="FormFieldCustom">
+
+                    <div className="form-group-two">
                         <label htmlFor="location">Location</label>
                         <input
                             type="text"
                             name="location"
                             value={formData.location}
                             onChange={handleChange}
+                            placeholder="Where are you from?"
+                            className="form-input-two"
                         />
                     </div>
-                    <div className="FormFieldCustom">
+
+                    <div className="form-group-two">
                         <label htmlFor="bio">Bio</label>
                         <textarea
                             name="bio"
                             value={formData.bio}
                             onChange={handleChange}
+                            placeholder="Tell us a bit about yourself"
+                            className="form-input-two"
                             rows="3"
-                            cols="30"
                         ></textarea>
                     </div>
-                    <div className="FormFieldCustom">
+
+                    <div className="form-group-two">
                         <label htmlFor="dateOfBirth">Date of Birth</label>
                         <input
                             type="date"
                             name="dateOfBirth"
                             value={formData.dateOfBirth}
                             onChange={handleChange}
+                            className="form-input-two"
                             required
                         />
-                        {errors.dateOfBirth && <p className="Error">{errors.dateOfBirth}</p>}
+                        {errors.dateOfBirth && <p className="error-message-two">{errors.dateOfBirth}</p>}
                     </div>
-                    <div className="FormFieldCustom">
-                        <label htmlFor="profilePicture" className="CustomFileButton" onClick={handleButtonClick}>
-                            <span className="FormFieldCustomSpan">Choose Profile Picture</span>
-                        </label>
+
+                    <div className="form-group-two profile-picture-group">
+                        <label>Profile Picture</label>
                         <input
                             type="file"
                             name="profilePicture"
                             accept="image/*"
                             onChange={handleFileChange}
                             id="profilePictureInput"
-                            style={{ display: 'none' }}
+                            className="file-input-hidden"
                         />
-                        {imagePreview && <img src={imagePreview} alt="Profile Preview" className="ImagePreview" />}
-                        {errors.profilePicture && <p className="Error">{errors.profilePicture}</p>}
+                        <button
+                            type="button"
+                            onClick={handleButtonClick}
+                            className="file-upload-button"
+                        >
+                            Choose Profile Picture
+                        </button>
+                        {imagePreview && (
+                            <div className="image-preview-container">
+                                <img
+                                    src={imagePreview}
+                                    alt="Profile Preview"
+                                    className="image-preview"
+                                />
+                            </div>
+                        )}
+                        {errors.profilePicture && <p className="error-message-two">{errors.profilePicture}</p>}
                     </div>
 
-                    <button type="submit" className="SubmitButton">
-                        Submit
+                    <button type="submit" className="submit-button-two">
+                        Complete Registration
                     </button>
                 </form>
+
+                <div className="login-redirect-two">
+                    Already have an account? <Link to="/login" className="login-link-two">Sign In</Link>
+                </div>
             </div>
-        </>
+        </div>
     );
 };
 
