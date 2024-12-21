@@ -10,6 +10,7 @@ import {useUser} from "./Login.jsx";
 
 function Sidebar(props) {
     const navigate = useNavigate();
+    const { user } = useUser();
 
     // Handle navigation on profile click
     const handleProfileClick = () => {
@@ -19,7 +20,15 @@ function Sidebar(props) {
     const handleProfileClick2 = () => {
         navigate('/friends');
     };
-    const { user } = useUser();
+
+    // Handle logout functionality
+    const handleLogout = () => {
+        // Clear all items from localStorage
+        localStorage.clear();
+
+        // Navigate to login page
+        navigate('/login');
+    };
 
     return (
         <>
@@ -42,7 +51,7 @@ function Sidebar(props) {
                             <img src={settingsBoxIcon} alt='settingsIcon' />
                             <p>Settings</p>
                         </li>
-                        <li>
+                        <li onClick={handleLogout}>
                             <img src={logoutIcon} alt='settingsIcon' />
                             <p>Log Out</p>
                         </li>

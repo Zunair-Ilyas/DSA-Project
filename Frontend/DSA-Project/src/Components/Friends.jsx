@@ -16,7 +16,8 @@ function Friends({ userID }) {
                 setIsLoading(true);
 
                 // Fetch friends
-                const friendsResponse = await axios.get(`http://localhost:2011/friends/getFriends/6731a0e2743c20843285dff8`);
+                const id = localStorage.getItem('userId')
+                const friendsResponse = await axios.get(`http://localhost:2011/friends/getFriends/${id}`);
                 if (Array.isArray(friendsResponse.data)) {
                     setFriends(friendsResponse.data);
 
@@ -39,7 +40,8 @@ function Friends({ userID }) {
                             if (mutualFriendIds.length > 0) {
                                 const mutualDetailsPromises = mutualFriendIds.map(async (mutualId) => {
                                     try {
-                                        const detailResponse = await axios.get(`http://localhost:2011/users/get-user/${mutualId}`);
+                                        const id = localStorage.getItem('userId')
+                                        const detailResponse = await axios.get(`http://localhost:2011/friends/getUser/${mutualId}`);
                                         return detailResponse.data;
                                     } catch (detailErr) {
                                         console.error(`Error fetching details for mutual friend ${mutualId}:`, detailErr);
@@ -78,7 +80,7 @@ function Friends({ userID }) {
 
             const currentUserId = localStorage.getItem('userId');
 
-            const response = await axios.post('http://localhost:2011/friends/unfriend', {
+            const response = await axios.post('http://localhost:2011/friends/unfriend-request', {
                 senderID: currentUserId,
                 receiverID: friendId
             });

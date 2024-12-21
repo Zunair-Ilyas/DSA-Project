@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useUser } from './Login'; // Import the useUser hook
+import { useUser } from './Login';
 import logo from "../assets/Logo.svg";
 import searchIcon from "../assets/searchIcon.svg";
 import profilePic from "../assets/ProfilePic1.png";
@@ -8,6 +8,7 @@ import settingsIcon from "../assets/SettingsIcon.svg";
 import notificationsIcon from "../assets/NotificationsIcon.svg";
 import './Navbar.css';
 import { useNavigate } from "react-router-dom";
+import image from '../assets/ProfileIcon2.svg'
 
 function Navbar(props) {
     const navigate = useNavigate();
@@ -22,12 +23,12 @@ function Navbar(props) {
             const fetchFriendRequests = async () => {
                 try {
                     // Fetch full user details to get received friend requests
-                    const response = await axios.get(`http://localhost:2011/users/${user._id}`);
+                    const response = await axios.get(`http://localhost:2011/friends/getUser/${user._id}`);
 
                     // Fetch details for each sender of friend requests
                     const requestDetails = await Promise.all(
                         response.data.friendRequestsReceived.map(async (senderId) => {
-                            const senderResponse = await axios.get(`http://localhost:2011/users/${senderId}`);
+                            const senderResponse = await axios.get(`http://localhost:2011/friends/getUser/${senderId}`);
                             return {
                                 id: senderId,
                                 ...senderResponse.data
@@ -136,7 +137,7 @@ function Navbar(props) {
                         friendRequests.map(request => (
                             <div key={request.id} className="friend-request-item">
                                 <img
-                                    src={request.profilePicture || 'default-profile.png'}
+                                    src={image || 'default-profile.png'}
                                     alt={request.fullName}
                                 />
                                 <div className="friend-request-details">

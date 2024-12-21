@@ -3,7 +3,8 @@ const statusCodes = require('http-status-codes');
 
 const getAllUsers = async (req, res) => {
     try {
-        const users = await User.find().select('_id').populate('friends', '_id')    // Populate 'friends' with only '_id'
+        // const users = await User.find().select('_id').populate('friends', '_id')    // Populate 'friends' with only '_id'
+        const users = await User.find() // Populate 'friends' with only '_id'
 
         console.log(users);
         res.status(200).json(users);
